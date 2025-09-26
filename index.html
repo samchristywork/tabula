@@ -114,6 +114,14 @@
               td.textContent = 'Error';
             }
 
+            td.onclick = () => {
+              const newValue = prompt("Edit Cell:", cellData);
+              if (newValue !== null) {
+                table.content[rowIndex][cellIndex] = newValue;
+                render();
+              }
+            };
+
             row.appendChild(td);
           });
           tableElement.appendChild(row);
