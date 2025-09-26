@@ -73,6 +73,11 @@
         container.style.left = table.position.x + 'px';
         container.style.top = table.position.y + 'px';
 
+        container.addEventListener('mousedown', (event) => {
+          event.stopPropagation();
+          setActiveTable(container);
+        });
+
         const dragBar = document.createElement('div');
         dragBar.className = 'drag-bar';
         const titleText = document.createTextNode(table.name);
@@ -169,6 +174,12 @@
           tables[index].position.x = parseInt(element.style.left, 10);
           tables[index].position.y = parseInt(element.style.top, 10);
         }
+      }
+
+      function setActiveTable(activeTable) {
+        document.querySelectorAll('.table-container').forEach((container) => {
+          container.style.zIndex = container === activeTable ? 999 : 1;
+        });
       }
 
       function render() {
