@@ -32,6 +32,12 @@
         position: absolute;
         right: 0.5rem;
       }
+      .button-container button {
+        border: none;
+      }
+      .button-container button img {
+        height: 0.9rem;
+      }
       table {
         border-collapse: collapse;
         background-color: white;
@@ -114,6 +120,18 @@
         });
 
         container.appendChild(tableElement);
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'button-container';
+
+        const addRowButton = document.createElement('button');
+        addRowButton.innerHTML = `<img src='add-row.svg'></img>`;
+        addRowButton.onclick = () => {
+          const newRow = new Array(table.heading.length).fill("");
+          table.content.push(newRow);
+          render();
+        };
+        buttonContainer.appendChild(addRowButton);
+        container.appendChild(buttonContainer);
 
         return container;
       }
