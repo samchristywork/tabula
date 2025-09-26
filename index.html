@@ -120,6 +120,8 @@
         });
 
         container.appendChild(tableElement);
+        makeDraggable(container, dragBar, tableIndex);
+
         const buttonContainer = document.createElement('div');
         buttonContainer.className = 'button-container';
 
@@ -134,6 +136,31 @@
         container.appendChild(buttonContainer);
 
         return container;
+      }
+
+      function makeDraggable(element, handle, index) {
+        let offsetX = 0, offsetY = 0;
+
+        handle.onmousedown = function(e) {
+          e.preventDefault();
+          offsetX = e.clientX - element.offsetLeft;
+          offsetY = e.clientY - element.offsetTop;
+          document.onmousemove = onMouseMove;
+          document.onmouseup = onMouseUp;
+        };
+
+        function onMouseMove(e) {
+          e.preventDefault();
+          element.style.left = e.clientX - offsetX + "px";
+          element.style.top = e.clientY - offsetY + "px";
+        }
+
+        function onMouseUp() {
+          document.onmousemove = null;
+          document.onmouseup = null;
+          tables[index].position.x = parseInt(element.style.left, 10);
+          tables[index].position.y = parseInt(element.style.top, 10);
+        }
       }
 
       function render() {
