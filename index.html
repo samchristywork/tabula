@@ -72,6 +72,16 @@
         const titleText = document.createTextNode(table.name);
         dragBar.appendChild(titleText);
 
+        const img = document.createElement('img');
+        img.src = "edit.svg";
+        img.onclick = () => {
+          const newTitle = prompt("Enter new table title:", table.name);
+          if (newTitle !== null) {
+            table.name = newTitle;
+            dragBar.replaceChild(document.createTextNode(newTitle), titleText);
+          }
+        };
+        dragBar.appendChild(img);
         container.appendChild(dragBar);
 
         const tableElement = document.createElement('table');
