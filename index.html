@@ -146,6 +146,18 @@
           render();
         };
         buttonContainer.appendChild(addRowButton);
+
+        const addColumnButton = document.createElement('button');
+        addColumnButton.textContent = 'Add Column';
+        addColumnButton.innerHTML = `<img src='add-column.svg'></img>`;
+        addColumnButton.onclick = () => {
+          let newColName = 'Column ' + String.fromCharCode(65 + table.heading.length);
+          newColName = prompt("Enter new column title:", newColName);
+          table.heading.push(newColName);
+          table.content.forEach(row => row.push(""));
+          render();
+        };
+        buttonContainer.appendChild(addColumnButton);
         container.appendChild(buttonContainer);
 
         return container;
