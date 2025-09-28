@@ -65,7 +65,29 @@
             ["'apple'", "'banana'", "'carrot'"]
           ]
         },
+        {
+          name: "Test Table 2",
+          position: {x: 310, y: 10},
+          heading: ["Foo"],
+          content: [
+            ["'Bar'"],
+            ["'Baz'"]
+          ]
+        },
+        {
+          name: "Test Table 3",
+          position: {x: 10, y: 210},
+          heading: ["Column a", "Column b", "Column c"],
+          content: [
+            ["1", "2", "3+4"],
+            ["1", "2", "ref(2, 0, 2)+10"]
+          ]
+        }
       ];
+
+      function ref(t, c, r) {
+        return eval(tables[t].content[c][r]);
+      }
 
       function createTableElement(table, tableIndex) {
         const container = document.createElement('div');
