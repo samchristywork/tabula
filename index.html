@@ -210,10 +210,10 @@
         }
       }
 
+      let lastZIndex = 1;
       function setActiveTable(activeTable) {
-        document.querySelectorAll('.table-container').forEach((container) => {
-          container.style.zIndex = container === activeTable ? 999 : 1;
-        });
+        lastZIndex++;
+        activeTable.style.zIndex = lastZIndex;
       }
 
       function render() {
